@@ -6,8 +6,8 @@ import org.apache.commons.codec.digest.DigestUtils
 import java.io.InputStream
 
 object HashAlgorithms {
-  lazy val defaultBufferSize = 32 * 1024
-  lazy val xxhashFactory = XXHashFactory.fastestInstance()
+  private lazy val defaultBufferSize: Int = 32 * 1024
+  private lazy val xxhashFactory: XXHashFactory = XXHashFactory.fastestInstance()
 
   def md5(inputStream: InputStream): String = {
     DigestUtils.md5Hex(inputStream)
