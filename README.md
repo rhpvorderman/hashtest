@@ -75,8 +75,8 @@ These were run using the native C tools provided on Debian Buster
 
 ### Java implementations
 - md5sum results. Average=8491.1ms, min=8419.0ms, max=8549.0ms
-- xxh64sum results. Average=667ms, min=660ms, max=688ms
-- xxh32sum results. Average=870ms, min=863ms, max=873ms
+- xxh64sum results. Average=582ms, min=580ms, max=585ms
+- xxh32sum results. Average=798ms, min=791ms, max=805ms
 
 ## Conclusion
 
@@ -86,8 +86,8 @@ than the native C implementation.
 
 The xxh64sum and xxh32sum implementation's of [lz4-java](
 https://github.com/lz4/lz4-java) are quite excellent. The overhead of approx 
-200ms on a 3.4 GB file might percentually be 40% but it is unsure how much of
-this is due to the benchmark code. 40% is also an acceptable hit when going
+200ms on a 3.4 GB file might percentually be ~25% but it is unsure how much of
+this is due to the benchmark code. ~25% is also an acceptable hit when going
 from native C to the JVM.
 
 # Effect of buffer sizes
