@@ -8,6 +8,7 @@ import java.io.InputStream
 object HashAlgorithms {
   lazy val defaultBufferSize = 32 * 1024
   lazy val xxhashFactory = XXHashFactory.fastestInstance()
+
   def md5(inputStream: InputStream): String = {
     DigestUtils.md5Hex(inputStream)
   }
@@ -21,7 +22,8 @@ object HashAlgorithms {
       var length = inputStream.read(buffer)
       xxh64sum = LongHashFunction.xx(xxh64sum).hashBytes(buffer, 0 ,length)
     }
-    xxh64sum.toHexString
+    // toHexString does not add leading zero's
+    f"%%16s".format(xxh64sum.toHexString).replace(" ", "0")
   }
 
   def xxh64lz4(inputStream: InputStream,
@@ -32,7 +34,8 @@ object HashAlgorithms {
       var length: Int = inputStream.read(buffer)
       hasher.update(buffer, 0, length)
     }
-    hasher.getValue.toHexString
+    // toHexString does not add leading zero's
+    f"%%16s".format(hasher.getValue.toHexString).replace(" ", "0")
   }
 
   def xxh32lz4(inputStream: InputStream,
@@ -43,7 +46,8 @@ object HashAlgorithms {
       var length: Int = inputStream.read(buffer)
       hasher.update(buffer, 0, length)
     }
-    hasher.getValue.toHexString
+    // toHexString does not add leading zero's
+    f"%%8s".format(hasher.getValue.toHexString).replace(" ", "0")
   }
 }
 
