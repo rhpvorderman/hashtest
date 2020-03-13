@@ -90,3 +90,41 @@ https://github.com/lz4/lz4-java) are quite excellent. The overhead of approx
 this is due to the benchmark code. 40% is also an acceptable hit when going
 from native C to the JVM.
 
+# Effect of buffer sizes
+
+This benchmarks the [lz4-java](https://github.com/lz4/lz4-java) 
+streaming implementations and tries to check the effects of different 
+buffersizes. The above testing methodology was used. 
+The buffer sizes were adapted in the code and the tests were run.
+Only averages are reported.
+
+## Results
+Buffer size are in kb (1024 bytes). Results are reported in ms
+
+Buffersize | xxh64sum | xxh32sum
+---|---|---
+32kb | 667ms | 870ms
+64kb | 602ms | 823ms
+96kb | 577ms | 796ms
+128kb | 588ms | 808ms
+256kb | 592ms | 809ms
+1024kb | 566ms | 778ms
+3072kb | 616ms | 841ms
+
+Increasing the 
+buffersize from 32kb to 64kb netted a performance advantage of about ten 
+percent. Going from 64 to 96 kb achieved about 5 percent more performance.
+Going up from 96 to 128 kb degraded performance by about 2%. Going up from 
+128kb to 256 kb had a negligible impact on performance. Going up even further
+to 1024kb gets the optimal result for this machine. Going up to 3072kb 
+degrades performance again.
+
+## Conclusion
+It is better to pick a default buffer size that is slightly too big, than one 
+that is slightly too small. Too small buffer sizes have a much more negative 
+impact than too big ones.
+
+Picking very big buffers has a negative impact on memory usage. In light of 
+these results, the 128kb buffer seems to be the optimal choice. It will not 
+be too small on most machines (given the test machine used was a 2019 machine),
+while it will also be not too big for most machines.
