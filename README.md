@@ -53,5 +53,15 @@ For each test 3 warmup runs were performed to negate any effects of kernel
 file caching. For each test 10 total tests were run over which the average was
 calculated.
 
+## Native c-implementations
 
+- md5sum (GNU coreutils) 8.30, from the Debian coreutils package.
+- xxh64sum 0.6.5 (64-bits little endian), by Yann Collet, from the Debian
+  xxhash package.
+- xxh32sum 0.6.5 (64-bits little endian), by Yann Collet, from the Debian 
+  xxhash package.
 
+### Results 
+- md5sum results. Average=4875.9ms, min=4833.3ms, max=4925.5ms
+- xxh64sum results. Average=472.5ms, min=466.3ms, max=485.8ms
+- xxh32sum results. Average=696.8ms, min=686.6ms, max=714.5ms
