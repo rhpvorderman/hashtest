@@ -16,6 +16,9 @@ object HashAlgorithms {
   def xxh64OpenHft(inputStream: InputStream,
                    bufferSize: Int = defaultBufferSize
                   ): String = {
+    /**
+     * This is an attempt to make a streaming version of the openhft algorithm. But it does not work.
+     */
     val buffer: Array[Byte] = new Array[Byte](bufferSize)
     var xxh64sum: Long = 0L
     while (inputStream.available() > 0) {
