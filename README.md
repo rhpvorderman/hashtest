@@ -86,7 +86,7 @@ than the native C implementation.
 
 The xxh64sum and xxh32sum implementation's of [lz4-java](
 https://github.com/lz4/lz4-java) are quite excellent. The overhead of approx 
-200ms on a 3.4 GB file might percentually be ~25% but it is unsure how much of
+120ms on a 3.4 GB file might percentually be ~25% but it is unsure how much of
 this is due to the benchmark code. ~25% is also an acceptable hit when going
 from native C to the JVM.
 
