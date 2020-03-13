@@ -2,9 +2,11 @@ package net.biowdl.hashtesttest
 
 import better.files.{File, Resource}
 import net.biowdl.hashtest.HashAlgorithms
-import org.scalatest.{Assertion, Matchers}
+import org.scalatest.Matchers
 import org.scalatest.testng.TestNGSuite
 import org.testng.annotations.{DataProvider, Test}
+
+
 class HashAlgorithmsTest extends TestNGSuite with Matchers {
   val rabarberTextFile = File(Resource.getUrl("rabarber.txt"))
   val randombase64File = File(Resource.getUrl("randombase64"))

@@ -22,7 +22,7 @@ object HashAlgorithms {
     val buffer: Array[Byte] = new Array[Byte](bufferSize)
     var xxh64sum: Long = 0L
     while (inputStream.available() > 0) {
-      var length = inputStream.read(buffer)
+      val length = inputStream.read(buffer)
       xxh64sum = LongHashFunction.xx(xxh64sum).hashBytes(buffer, 0 ,length)
     }
     // toHexString does not add leading zero's
@@ -34,7 +34,7 @@ object HashAlgorithms {
     val hasher = xxhashFactory.newStreamingHash64(0)
     val buffer: Array[Byte] = new Array[Byte](bufferSize)
     while (inputStream.available() > 0) {
-      var length: Int = inputStream.read(buffer)
+      val length: Int = inputStream.read(buffer)
       hasher.update(buffer, 0, length)
     }
     // toHexString does not add leading zero's
@@ -46,7 +46,7 @@ object HashAlgorithms {
     val hasher = xxhashFactory.newStreamingHash32(0)
     val buffer: Array[Byte] = new Array[Byte](bufferSize)
     while (inputStream.available() > 0) {
-      var length: Int = inputStream.read(buffer)
+      val length: Int = inputStream.read(buffer)
       hasher.update(buffer, 0, length)
     }
     // toHexString does not add leading zero's
