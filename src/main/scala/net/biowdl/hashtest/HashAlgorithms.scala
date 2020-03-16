@@ -30,14 +30,20 @@ object HashAlgorithms {
   }
 
   def xxh64lz4(inputStream: InputStream,
-               bufferSize: Int = defaultBufferSize): String = {
+               bufferSize: Int = defaultBufferSize,
+               maxSize: Long = Long.MaxValue): String = {
     val hasher = xxhashFactory.newStreamingHash64(0)
     val buffer: Array[Byte] = new Array[Byte](bufferSize)
-    while (inputStream.available() > 0) {
-      val length: Int = inputStream.read(buffer)
-      hasher.update(buffer, 0, length)
+    var byteCounter: Long = 0
+    try {
+      while (inputStream.available() > 0 && byteCounter < maxSize) {
+        val length: Int = inputStream.read(buffer)
+        hasher.update(buffer, 0, length)
+        byteCounter += bufferSize
+      }
     }
-    // toHexString does not add leading zero's
+    finally inputStream.close()
+    // Long.toHexString does not add leading zero's
     f"%%16s".format(hasher.getValue.toHexString).replace(" ", "0")
   }
 
